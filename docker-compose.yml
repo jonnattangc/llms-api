@@ -1,0 +1,18 @@
+services:
+  llmservices:
+    container_name: llms-service
+    image: llms:1.0.0
+    build: 
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+        - ./app:/home/node/app
+    env_file:
+      - ../envs/llms.env
+    ports:
+      - "8090:8090"
+    networks:
+      - db-net
+    command: tail -f /home/node/app/package.json
+networks:
+  db-net:
