@@ -2,8 +2,14 @@ FROM node:24-slim
 
 WORKDIR /home/node/app
 
-USER node
-
 EXPOSE 8090
 
-CMD ["npm", "start"]
+RUN chown -R node:node . && \
+    npm install && \
+    #npm install -g pm2 && \
+    #npm run build
+    echo "node_modules" > .dockerignore
+
+USER node
+
+CMD ["npm", "run", "dev"]
