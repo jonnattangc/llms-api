@@ -10,11 +10,12 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 
 // congura CORS
-const whitelist = ['https://dev.jonnattan.com', 'https://api.jonnattan.cl', 'http://localhost'];
+const whitelist = ['https://dev.jonnattan.com', 'https://api.jonnattan.cl', 'http://0.0.0.0:8090', 'http://localhost:8090'];
 
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
-    if (whitelist.indexOf(origin || '') !== -1) {
+    if (whitelist.indexOf(origin || '') !== -1 || !origin) {
+      console.log('Origin:', origin);
       callback(null, true);
     } else {
       callback(new Error('No permitido por politicas de CORS'));
