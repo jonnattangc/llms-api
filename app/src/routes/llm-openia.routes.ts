@@ -1,5 +1,6 @@
 import { Router } from 'express';
-
+import Request from 'express';
+import Response from 'express';
 const router = Router();
 
 // Endpoint para obtener todos los productos

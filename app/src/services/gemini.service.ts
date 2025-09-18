@@ -10,7 +10,7 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // Función para generar contenido
-export async function generateContent(prompt: string, modelg: string) {
+export async function generateContent(prompt: string, modelg: string = 'gemini-2.5-flash-lite') {
   try {
     const model = genAI.getGenerativeModel({ model: modelg });
     const result = await model.generateContent(prompt);
