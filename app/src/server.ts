@@ -1,12 +1,15 @@
 import express from 'express';
+import Request from 'express';
+import Response from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import CorsOptions from 'cors';
 import apiRouter from './routes/index.ts'; 
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const host = process.env.HOST || 'localhost';
 
 // congura CORS

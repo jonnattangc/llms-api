@@ -10,8 +10,9 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // Función para generar contenido
-export async function generateContent(prompt: string, modelg: string) {
+export async function generateContent(prompt: string, modelg: string = 'gemini-3-flash-preview') {
   try {
+    console.log('Generando contenido con la API de Gemini...');
     const model = genAI.getGenerativeModel({ model: modelg });
     const result = await model.generateContent(prompt);
     const response = await result.response;
