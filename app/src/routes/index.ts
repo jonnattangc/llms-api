@@ -7,6 +7,6 @@ const router = Router();
 
 // Asocia los enrutadores con sus prefijos de ruta base
 router.use('/gemini', geminiRouter);
-router.use('/openia', openiaRouter);
+router.use('/openai', openiaRouter);
 
 export default router;
