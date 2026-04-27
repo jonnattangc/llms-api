@@ -13,7 +13,7 @@ const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const host = process.env.HOST || 'localhost';
 
 // congura CORS
-const whitelist = ['https://dev.jonnattan.com', 'https://api.jonnattan.cl', 'http://0.0.0.0:8090', 'http://localhost:8090'];
+const whitelist = ['https://dev.jonnattan.com', 'https://api.jonnattan.cl', 'https://api.jonna.cl'];
 
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {

@@ -1,12 +1,13 @@
 services:
   llmservices:
     container_name: llms-service
-    image: llms:1.0.0
+    image: llms:dev
     build: 
       dockerfile: Dockerfile
     restart: always
     volumes:
         - ./app:/home/node/app
+        - ../envs/credentials-excel.json:/home/node/app/credentials.json
     env_file:
       - ../envs/llms.env
     ports:
