@@ -18,13 +18,16 @@ router.post('/:model', async (req: Request, res: Response) => {
     if (!data || !data.prompt) {
         return res.status(400).json({ error: 'El campo "prompt" es requerido.' });
     }
+
     const prompt = data.prompt;
+    const asistantType = data.asistantType || 'chat';
+
     if (type && type === 'encripted') { 
         // Aquí puedes agregar la lógica para desencriptar el prompt si es necesario
     } 
 
     try {
-        const text = await generateContent(prompt, model);
+        const text = await generateContent(prompt, model, asistantType );
         console.log('Contenido generado: ', text);
         res.json({ result: text });
     } catch (error) {
