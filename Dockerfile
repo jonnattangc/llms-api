@@ -2,17 +2,19 @@ FROM node:24-slim
 
 WORKDIR /home/node/app
 
-ADD app/package.json /home/node/app/package.json
+ENV GEMINI_API_KEY ''
+ENV OPENAI_API_KEY ''
+ENV DEEPSEEK_API_KEY ''
+ENV KIMI_API_KEY ''
+
+ADD app/ /home/node/app/
 
 RUN chown -R node:node . && \
     npm cache clean --force && \
-    npm install && \
-    echo "node_modules" > .dockerignore
-    #npm install -g pm2 && \
-    #npm run build
+    npm install
 
 USER node
 
-EXPOSE 8090
+EXPOSE 8065
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
