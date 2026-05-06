@@ -1,10 +1,9 @@
 import express from 'express';
-import Request from 'express';
-import Response from 'express';
-import dotenv from 'dotenv';
+import type { Request, Response } from 'express';
 import cors from 'cors';
-import CorsOptions from 'cors';
-import apiRouter from './routes/index.ts'; 
+import type { CorsOptions } from 'cors';
+import dotenv from 'dotenv';
+import apiRouter from './routes/index.ts';
 
 dotenv.config();
 
@@ -12,13 +11,11 @@ const app = express();
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const host = process.env.HOST || 'localhost';
 
-// congura CORS
 const whitelist = ['https://dev.jonnattan.com', 'https://api.jonnattan.cl', 'https://api.jonna.cl'];
 
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin || '') !== -1 || !origin) {
-      console.log('Origin:', origin);
       callback(null, true);
     } else {
       callback(new Error('No permitido por politicas de CORS'));
@@ -26,21 +23,14 @@ const corsOptions: CorsOptions = {
   },
 };
 
-app.use(express.json()); // Middleware para parsear JSON
+app.use(express.json());
 app.use(cors(corsOptions));
-// Usa el enrutador principal para manejar todas las rutas
 app.use('/llm', apiRouter);
 
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('¡Hola, mundo desde Express con TypeScript!');
+app.get('/', (_req: Request, res: Response) => {
+  res.json({ status: 'ok', providers: ['gemini', 'openai', 'kimi', 'deepseek'] });
 });
 
 app.listen(port, host, () => {
   console.log(`Servidor escuchando en http://${host}:${port}`);
 });
-
-
-
-
-

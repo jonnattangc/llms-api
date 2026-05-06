@@ -1,12 +1,14 @@
-import { Router } from 'express';
-
+import express from 'express';
 import geminiRouter from './llm-gemini.routes.ts';
-import openiaRouter from './llm-openia.routes.ts';
+import openaiRouter from './llm-openai.routes.ts';
+import kimiRouter from './llm-kimi.routes.ts';
+import deepseekRouter from './llm-deepseek.routes.ts';
 
-const router = Router();
+const router = express.Router();
 
-// Asocia los enrutadores con sus prefijos de ruta base
 router.use('/gemini', geminiRouter);
-router.use('/openai', openiaRouter);
+router.use('/openai', openaiRouter);
+router.use('/kimi', kimiRouter);
+router.use('/deepseek', deepseekRouter);
 
 export default router;

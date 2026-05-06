@@ -1,11 +1,11 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { generateContent } from '../services/gemini.service.ts';
+import { generateContent } from '../services/deepseek.service.ts';
 
 const router = express.Router();
 
 router.get('/', (_req: Request, res: Response) => {
-  res.json({ provider: 'gemini', models: ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-2.5-pro-preview-05-06'] });
+  res.json({ provider: 'deepseek', models: ['deepseek-chat', 'deepseek-reasoner'] });
 });
 
 router.post('/:model', async (req: Request, res: Response) => {
@@ -28,7 +28,7 @@ router.post('/:model', async (req: Request, res: Response) => {
     const text = await generateContent(prompt, model, assistantType);
     res.json({ result: text });
   } catch (error) {
-    console.error('Error Gemini:', error);
+    console.error('Error DeepSeek:', error);
     res.status(500).json({ error: 'Error al generar el contenido.' });
   }
 });
