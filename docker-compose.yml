@@ -1,19 +1,19 @@
 services:
   llmservices:
     container_name: llms-service
-    image: llm:2.1
+    image: jonnattangc/llmservice:1.0.0
     build:
       dockerfile: Dockerfile
     restart: always
-    volumes:
-      - ./app:/home/node/app
-      - ../envs/credentials-excel.json:/home/node/app/credentials.json
+    #volumes:
+    # - ./app:/home/node/app
+    # - ../envs/credentials-excel.json:/home/node/app/credentials.json
     env_file:
       - ../envs/llms.env
     ports:
       - "8065:8065"
     networks:
       - db-net
-    command: tail -f /home/node/app/credentials.json
+    #command: tail -f /home/node/app/credentials.json
 networks:
   db-net:
