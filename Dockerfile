@@ -15,7 +15,7 @@ WORKDIR /home/node/app
 
 ADD app/ /home/node/app/
 
-ADD ./../envs/credentials-excel.json /home/node/app/credentials.json
+ADD credentials-excel.json /home/node/app/credentials.json
 
 RUN chown -R node:node . && \
     npm cache clean --force && \
