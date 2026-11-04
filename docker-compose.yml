@@ -5,15 +5,16 @@ services:
     build:
       dockerfile: Dockerfile
     restart: always
-    #volumes:
-    # - ./app:/home/node/app
-    # - ../envs/credentials-excel.json:/home/node/app/credentials.json
+    volumes:
+     - ./app:/home/node/app
+     - ../envs/credentials-excel.json:/home/node/app/credentials.json
+     - ../envs/llms.env:/home/node/app/.env
     env_file:
       - ../envs/llms.env
     ports:
       - "8065:8065"
     networks:
       - db-net
-    #command: tail -f /home/node/app/credentials.json
+    command: tail -f /home/node/app/credentials.json
 networks:
   db-net:
